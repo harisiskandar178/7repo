@@ -1,0 +1,507 @@
+---clicker sim
+if game.PlaceId == 7560156054 then
+print("script loaded")
+local Library = loadstring(game:HttpGet("https://pastebin.com/raw/vff1bQ9F"))()
+local Window = Library.CreateLib("Clicker Simulator", "Synapse")
+local Tab = Window:NewTab("Main")
+local Button = Tab:NewSection("Main")
+Button:NewToggle("On Click", "Auto Click", function(click)
+if click then
+getgenv().click = true
+while getgenv().click do
+wait()
+local vim = game:service("VirtualInputManager")
+           vim:SendKeyEvent(true, "E", false, game)
+end
+else
+getgenv().click = false
+wait()
+local vim = game:service("VirtualInputManager")
+           vim:SendKeyEvent(false, "E", false, game)
+end
+end)
+Button:NewButton("Gamepass", "Autoclick,2x Gems,lucky,2x Click,2x Shiny Chance", function()
+    for i,v in pairs(game.Players.LocalPlayer.Boosts:GetDescendants()) do
+    if v.Name == "isActive" then
+        v.Value = true
+        end
+    end
+end)
+local Tbl = {}
+for i,a in pairs(game:GetService("Workspace").Eggs:GetChildren()) do
+    Tbl[i] = a.Name
+end
+Button:NewDropdown("Select Egg", "Select Egg", Tbl, function(egg)
+    selectegg = egg
+end)
+Button:NewToggle("Toggle Egg", "autobuy egg", function(buyegg)
+    getgenv().egg = buyegg
+while getgenv().egg do
+wait()
+local A_1 = game:GetService("Workspace").Eggs[selectegg]
+local A_2 = false
+local A_3 = false
+local Event = game:GetService("ReplicatedStorage").Events.Client.purchaseEgg2
+Event:InvokeServer(A_1, A_2, A_3)
+end
+end)
+Button:NewDropdown("Select Rebirth", "SelectRebirth", {1, 5, 10}, function(reb)
+    selectreb = reb
+end)
+Button:NewToggle("Toggle Rebirth", "On Rebirth", function(rebirth)
+    getgenv().rebirth = rebirth
+while getgenv().rebirth do
+wait()
+local A_1 = selectreb
+local A_2 = false
+local A_3 = false
+local Event = game:GetService("ReplicatedStorage").Events.Client.requestRebirth
+Event:FireServer(A_1, A_2, A_3)
+end
+end)
+local Tbi = {}
+for i,v in pairs(game:GetService("Workspace").Zones:GetChildren()) do
+    Tbi[i] = v.Name
+end
+Button:NewDropdown("Teleport Island", "Select island/Teleport Island", Tbi, function(island)
+    game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.Zones[island].teleport.CFrame
+end)
+Button:NewButton("EquipBest Pet", "Auto EquipBest Pet", function()
+    local Event = game:GetService("ReplicatedStorage").Events.Client.petsTools.equipBest
+Event:FireServer()
+end)
+end
+
+---rebirth champion x
+if game.PlaceId == 8540346411 then
+local Library = loadstring(game:HttpGet("https://pastebin.com/raw/vff1bQ9F"))()
+local Window = Library.CreateLib("Rebirth Champion X", "Midnight")
+local Tab = Window:NewTab("Main")
+local Section = Tab:NewSection("Main")
+---script
+Section:NewToggle("On Click", "Auto click", function(click)
+    getgenv().click = click
+while getgenv().click do
+wait()
+local Event = game:GetService("ReplicatedStorage").Events.Click3
+Event:FireServer()
+end
+end)
+Section:NewDropdown("Select Rebirth", "Select rebirth", {1, 2, 3}, function(reb)
+    selectrebirth = reb
+end)
+Section:NewToggle("On Rebirth", "Auto Rebirth", function(rebirth)
+    getgenv().rebirth = rebirth
+while getgenv().rebirth do
+wait()
+local A_1 = selectrebirth
+local Event = game:GetService("ReplicatedStorage").Events.Rebirth
+Event:FireServer(A_1)
+end
+end)
+Section:NewButton("Free gamepass", "Example:Autoclicker button 2xclick Auto Rebirth and etc", function()
+    for i,v in pairs(game.Players.LocalPlayer.Passes:GetChildren()) do
+    if v:IsA("BoolValue") then
+        v.Value = true
+        end
+    end
+end)
+
+local tbh = {}
+for i,v in pairs(game.Workspace.Scripts.TeleportTo:GetChildren()) do
+tbh[i] = v.Name
+end
+
+Section:NewDropdown("Tp Island", "Tp Island", tbh, function(tp)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.Scripts.TeleportTo[tp].CFrame
+end)
+
+local tbl = {}
+for i,v in pairs(game.Workspace.Scripts.Eggs:GetChildren()) do
+tbl[i] = v.Name
+end
+Section:NewDropdown("Select Egg", "Select egg", tbl, function(egg)
+    selectegg = egg
+end)
+Section:NewToggle("On Buy egg", "Buy Egg", function(buy)
+    getgenv().buy = buy
+while getgenv().buy do
+wait()
+local A_1 = selectegg
+local A_2 = "Single"
+local Event = game:GetService("ReplicatedStorage").Functions.Unbox
+Event:InvokeServer(A_1, A_2)
+end
+end)
+Section:NewButton("Free Potions And boosts", "idk if its work or just visual", function()
+    for i,v in pairs(game.Players.LocalPlayer.Boosts:GetChildren()) do
+    if v:IsA("NumberValue") then
+        v.Value = 9999999
+        end
+end
+for i,b in pairs(game.Players.LocalPlayer.Potions:GetChildren()) do
+    if b:IsA("NumberValue") then
+        b.Value = 9999999
+        end
+end
+end)
+end
+
+---tapping legend x
+if game.PlaceId == 8750997647 then
+local Library = loadstring(game:HttpGet("https://pastebin.com/raw/vff1bQ9F"))()
+local Window = Library.CreateLib("Tapping Legend X", "Ocean")
+local Tab = Window:NewTab("Main")
+local Section = Tab:NewSection("Main")
+
+Section:NewToggle("On Click", "AutoClick", function(click)
+    getgenv().spam = click
+while getgenv().spam do
+wait()
+game:GetService("ReplicatedStorage").Remotes.Tap:FireServer()
+end
+end)
+
+Section:NewDropdown("SelectRebirth", "Rebirth", {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20}, function(rebie)
+    selectreb = rebie
+end)
+
+Section:NewToggle("On Rebirth", "Auto Rebirth", function(rebi)
+    getgenv().rebirth = rebi
+while getgenv().rebirth do
+wait()
+local args = {
+    [1] = selectreb
+}
+
+game:GetService("ReplicatedStorage").Remotes.Rebirth:FireServer(unpack(args))
+end
+end)
+
+Section:NewButton("EquipBest Pet", "Auto Equip Best Pet", function()
+game:GetService("ReplicatedStorage").Remotes.EquipBest:InvokeServer()
+end)
+
+local tbl = {}
+for i,v in pairs(game.Workspace.Eggs:GetChildren()) do
+tbl[i] = v.Name
+end
+
+Section:NewDropdown("Select Egg", "Select egg", tbl, function(selectegg)
+    selecteg = selectegg
+end)
+
+Section:NewToggle("Buy Egg", "Buy egg", function(buy)
+    getgenv().egg = buy
+while getgenv().egg do
+wait()
+local args = {
+    [1] = selecteg,
+    [2] = 1
+}
+
+game:GetService("ReplicatedStorage").Remotes.BuyEgg:InvokeServer(unpack(args))
+end
+end)
+end
+
+---ninja legend
+if game.PlaceId == 3956818381 then
+local Library = loadstring(game:HttpGet("https://pastebin.com/raw/vff1bQ9F"))()
+local Window = Library.CreateLib("Ninja Legend", "BloodTheme")
+local Tab = Window:NewTab("Farming")
+local Section = Tab:NewSection("Farming")
+local oldsell = game:GetService("Workspace").sellAreaCircles.sellAreaCircle.circleInner.CFrame
+local oldhoopcframe = game.Workspace.Hoops.Hoop.touchPart.CFrame
+local plr = game.Players.LocalPlayer.Character.HumanoidRootPart
+local oldplrcframe = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+
+
+
+Section:NewToggle("Auto Swing", "Auto Swing", function(swing)
+    if swing then
+        getgenv().swing = true
+while getgenv().swing do
+wait()
+for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+    if v:IsA("Tool") and v:FindFirstChild("attackKatanaScript") then
+        game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
+        else
+            local A_1 = "swingKatana"
+local Event = game:GetService("Players").LocalPlayer.ninjaEvent
+Event:FireServer(A_1)
+        end
+    end
+end
+    else
+        getgenv().swing = false
+wait()
+game.Players.LocalPlayer.Character.Humanoid:UnequipTools()
+    end
+end)
+
+Section:NewToggle("Auto Swing V2", "Auto Swing V2", function(swing2)
+    if swing2 then
+        getgenv().swing2 = true
+while getgenv().swing2 do
+wait()
+for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+    if v:IsA("Tool") and v:FindFirstChild("attackKatanaScript") then
+        game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
+        end
+    end
+for i,b in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+if b:IsA("Tool") and b:FindFirstChild("attackKatanaScript") then
+b:Activate()
+end
+end
+end
+    else
+        getgenv().swing2 = false
+wait()
+game.Players.LocalPlayer.Character.Humanoid:UnequipTools()
+    end
+end)
+
+Section:NewToggle("Auto Sell", "Auto Sell", function(sell)
+    if sell then
+        getgenv().sell = true
+while getgenv().sell do
+wait()
+game.workspace.sellAreaCircles.sellAreaCircle.circleInner.CFrame=game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame;wait(.05)
+game.workspace.sellAreaCircles.sellAreaCircle.circleInner.CFrame=game.Workspace.Part.CFrame
+end
+    else
+        getgenv().sell = false
+wait(0.2)
+game:GetService("Workspace").sellAreaCircles.sellAreaCircle.circleInner.CFrame = oldsell
+    end
+end)
+
+Section:NewToggle("Auto Full Sell", "Auto Full Sell", function(sell2)
+    if sell2 then
+        getgenv().sell2 = true
+while getgenv().sell2 do
+wait()
+if
+game.Players.LocalPlayer.PlayerGui.gameGui.maxNinjitsuMenu.Visible==true then
+game.workspace.sellAreaCircles.sellAreaCircle.circleInner.CFrame=game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame;wait(.05)
+game.workspace.sellAreaCircles.sellAreaCircle.circleInner.CFrame=game.Workspace.Part.CFrame end
+end
+    else
+        getgenv().sell2 = false
+wait()
+game:GetService("Workspace").sellAreaCircles.sellAreaCircle.circleInner = oldsell
+    end
+end)
+
+Section:NewToggle("Auto Hoop", "Auto Hoop", function(hoop)
+    if hoop then
+        getgenv().Hoop = true
+while getgenv().Hoop do
+wait(4)
+for i,v in pairs(game.Workspace.Hoops:GetDescendants()) do
+if v.Name == "touchPart" then
+v.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+end
+end
+end
+    else
+        getgenv().Hoop = false
+wait()
+game.Workspace.Hoops.Hoop.touchPart.CFrame = oldhoopcframe
+    end
+end)
+
+Section:NewToggle("Auto Collect Coins", "Auto Collect Coins", function(coin)
+    if coin then
+        getgenv().spawn = true
+while getgenv().spawn do
+    wait()
+for i,v in pairs(game.Workspace.spawnedCoins.Valley:GetChildren()) do
+    if v:IsA("Part") then
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame + Vector3.new(0,3,0)
+        end
+end
+end
+    else
+        getgenv().spawn = false
+    end
+end)
+
+local Tab = Window:NewTab("Auto Buy")
+local Section = Tab:NewSection("Auto Buy")
+
+Section:NewToggle("Auto Buy Sword", "AutoBuySword", function(sword)
+    getgenv().sword = sword
+while getgenv().sword do
+wait()
+local A_1 = "buyAllSwords"
+local A_2 = "Ground"
+local Event = game:GetService("Players").LocalPlayer.ninjaEvent
+Event:FireServer(A_1, A_2)
+end
+end)
+
+Section:NewToggle("Auto Buy Belt", "Auto Buy Belt", function(belt)
+    getgenv().belt = belt
+while getgenv().belt do
+wait()
+local A_1 = "buyAllBelts"
+local A_2 = "Ground"
+local Event = game:GetService("Players").LocalPlayer.ninjaEvent
+Event:FireServer(A_1, A_2)
+end
+end)
+
+Section:NewToggle("Auto Buy Rank", "Auto Buy Rank", function(rank)
+    getgenv().rank = rank
+while getgenv().rank do
+wait()
+local A_1 = "buyAllRanks"
+local A_2 = "Ground"
+local Event = game:GetService("Players").harispro289.ninjaEvent
+Event:FireServer(A_1, A_2)
+end
+end)
+
+Section:NewToggle("Auto Buy Skill", "Auto Buy Skill", function(skill)
+    getgenv().skill = skill
+while getgenv().skill do
+wait()
+local A_1 = "buyAllSkills"
+local A_2 = "Ground"
+local Event = game:GetService("Players").LocalPlayer.ninjaEvent
+Event:FireServer(A_1, A_2)
+end
+end)
+
+Section:NewToggle("Auto Buy Shuriken", "Auto Buy Shuriken", function(shuriken)
+    getgenv().shuriken = shuriken
+while getgenv().shuriken do
+wait()
+local A_1 = "buyAllShurikens"
+local A_2 = "Ground"
+local Event = game:GetService("Players").LocalPlayer.ninjaEvent
+Event:FireServer(A_1, A_2)
+end
+end)
+
+local Tab = Window:NewTab("Island")
+local Section = Tab:NewSection("Island")
+
+Section:NewButton("Unlock All Island", "Unlock All Island", function()
+    plr.CFrame = CFrame.new(77.2458954, 765.955933, -134.662415, -0.364495605, -1.5109606e-08, -0.931205094, 2.75939049e-09, 1, -1.7305954e-08, 0.931205094, -8.87750229e-09, -0.364495605)
+wait(0.3)
+plr.CFrame = CFrame.new(222.948807, 2013.80908, 257.120422, -0.0323874541, 5.37074172e-08, -0.99947536, -4.48534259e-08, 1, 5.51890587e-08, 0.99947536, 4.66173304e-08, -0.0323874541)
+wait(0.3)
+plr.CFrame = CFrame.new(159.216507, 4047.34863, 22.4720993, 0.998345256, 1.033739e-10, 0.0575039424, -2.70083066e-12, 1, -1.75079373e-09, -0.0575039424, 1.74774129e-09, 0.998345256)
+wait(0.3)
+plr.CFrame = CFrame.new(167.689865, 5657.04004, 124.639778, 0.634512544, 8.46995718e-08, 0.772912562, -1.07380849e-07, 1, -2.1432017e-08, -0.772912562, -6.93971245e-08, 0.634512544)
+wait(0.3)
+plr.CFrame = CFrame.new(137.79126, 9284.95898, 81.6113815, 0.00939179864, -7.76699309e-08, -0.999955893, -4.5277126e-08, 1, -7.80986085e-08, 0.999955893, 4.60086156e-08, 0.00939179864)
+wait(0.3)
+plr.CFrame = CFrame.new(138.80098, 13679.8125, 77.8657074, 0.0611463413, -4.88929341e-09, 0.998128831, 3.98632665e-08, 1, 2.45639709e-09, -0.998128831, 3.96384756e-08, 0.0611463413)
+wait(0.3)
+plr.CFrame = CFrame.new(145.382629, 17686.1035, 84.5359421, -0.935951591, 2.84209722e-08, 0.352128714, 3.6582487e-11, 1, -8.06146474e-08, -0.352128714, -7.54385283e-08, -0.935951591)
+wait(0.3)
+plr.CFrame = CFrame.new(145.015366, 24069.7969, 86.5841064, -0.0812888294, -9.07422404e-09, -0.996690571, -4.21946789e-09, 1, -8.76021922e-09, 0.996690571, 3.49339602e-09, -0.0812888294)
+wait(0.3)
+plr.CFrame = CFrame.new(147.093063, 28256.0703, 83.9092026, 0.166023836, -4.79767515e-08, 0.986121714, -1.02048318e-07, 1, 6.58328503e-08, -0.986121714, -1.11561889e-07, 0.166023836)
+wait(0.3)
+plr.CFrame = CFrame.new(134.089783, 33206.7539, 59.3596344, -0.746976733, 2.74548881e-08, -0.664850175, 9.9419572e-13, 1, 4.12937311e-08, 0.664850175, 3.08447952e-08, -0.746976733)
+wait(0.3)
+plr.CFrame = CFrame.new(138.201447, 39317.3438, 83.0614014, 0.83554095, 1.36159146e-08, -0.549428165, -8.82133977e-10, 1, 2.34404727e-08, 0.549428165, -1.91008045e-08, 0.83554095)
+wait(0.3)
+plr.CFrame = CFrame.new(138.948883, 46010.3281, 60.1387138, -0.461441547, 3.49706859e-08, -0.887170613, -4.30073079e-08, 1, 6.17874889e-08, 0.887170613, 6.66661322e-08, -0.461441547)
+wait(0.3)
+plr.CFrame = CFrame.new(134.536545, 52607.5391, 60.358902, -0.603300631, -5.36750875e-08, -0.797513843, -5.97261405e-08, 1, -2.21215846e-08, 0.797513843, 3.42864581e-08, -0.603300631)
+wait(0.3)
+plr.CFrame = CFrame.new(141.269272, 59594.4531, 61.1057434, -0.927329838, 6.96433489e-08, -0.374245048, 4.44289299e-08, 1, 7.60012e-08, 0.374245048, 5.38508758e-08, -0.927329838)
+wait(0.3)
+plr.CFrame = CFrame.new(149.980347, 66668.9375, 72.0306015, 0.878946424, -6.14614777e-08, 0.476920485, 6.18461939e-08, 1, 1.48913326e-08, -0.476920485, 1.64070357e-08, 0.878946424)
+wait(0.3)
+plr.CFrame = CFrame.new(121.806496, 70270.625, 74.986908, 0.471160769, 1.94951628e-08, -0.882047355, -2.96962295e-08, 1, 6.23942054e-09, 0.882047355, 2.32537101e-08, 0.471160769)
+wait(0.3)
+plr.CFrame = CFrame.new(136.227722, 74442.625, 77.0934906, 0.448318064, -4.36777459e-09, -0.893874109, 5.14986986e-09, 1, -2.30345032e-09, 0.893874109, -3.57065688e-09, 0.448318064)
+wait(0.3)
+plr.CFrame = CFrame.new(146.322327, 79746.7578, 82.5318222, 0.67307657, -2.15669917e-08, 0.739572823, -1.34953326e-09, 1, 3.03896108e-08, -0.739572823, -2.14526121e-08, 0.67307657)
+wait(0.3)
+plr.CFrame = CFrame.new(178.322708, 83198.4609, 77.3166504, -0.280628681, 1.06745519e-08, 0.959816396, 5.38216653e-08, 1, 4.61479033e-09, -0.959816396, 5.29539612e-08, -0.280628681)
+wait(0.3)
+plr.CFrame = CFrame.new(129.964798, 87050.5391, 87.5662613, 0.596597195, 4.18325996e-08, -0.802540839, 8.55346072e-10, 1, 5.27610489e-08, 0.802540839, -3.21635447e-08, 0.596597195)
+wait(0.3)
+plr.CFrame = CFrame.new(224.042694, 91245.5625, 102.823242, 0.866831839, -1.75203212e-08, 0.498600602, 4.40451148e-11, 1, 3.50624134e-08, -0.498600602, -3.03712575e-08, 0.866831839)
+wait(0.3)
+plr.CFrame = oldplrcframe
+end)
+
+local Tab = Window:NewTab("Egg")
+local Section = Tab:NewSection("Egg")
+
+local tbl = {}
+for i,v in pairs(game.Workspace.mapCrystalsFolder:GetChildren()) do
+    tbl[i] = v.Name
+    end
+
+Section:NewDropdown("Select Egg", "Select Egg", tbl, function(egg)
+    selectegg = egg
+end)
+
+Section:NewToggle("On Buy Egg", "On Buy Egg", function(buyegg)
+    getgenv().buyegg = buyegg
+while getgenv().buyegg do
+wait()
+local A_1 = "openCrystal"
+local A_2 = selectegg
+local Event = game:GetService("ReplicatedStorage").rEvents.openCrystalRemote
+Event:InvokeServer(A_1, A_2)
+end
+end)
+
+local Tab = Window:NewTab("Misc")
+local Section = Tab:NewSection("Misc")
+
+Section:NewButton("Unlimited Jump", "Unlimited Jump", function()
+    game.Players.LocalPlayer.multiJumpCount.Value = 99999
+end)
+
+Section:NewToggle("Remove Notification", "Remove Notification", function(notif)
+    if notif then
+        game.Players.LocalPlayer.PlayerGui.statEffectsGui.Enabled = false
+game.Players.LocalPlayer.PlayerGui.hoopGui.Enabled = false
+    else
+        game.Players.LocalPlayer.PlayerGui.statEffectsGui.Enabled = true
+game.Players.LocalPlayer.PlayerGui.hoopGui.Enabled = true
+    end
+end)
+
+local Tab = Window:NewTab("Boss")
+local Section = Tab:NewSection("Boss")
+
+local tbi = {}
+for i,v in pairs(game.Workspace.bossFolder:GetChildren()) do
+    tbi[i] = v.Name
+end
+
+Section:NewDropdown("Select Boss", "Select Boss", tbi, function(boss)
+    selectboss = boss
+end)
+
+Section:NewToggle("On Kill Boss", "On Kill Boss", function(kill)
+    getgenv().kill = kill
+while getgenv().kill do
+wait()
+for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+    if v:IsA("Tool") and v:FindFirstChild("attackKatanaScript") then
+        game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
+else
+local A_1 = "swingKatana"
+local Event = game:GetService("Players").LocalPlayer.ninjaEvent
+Event:FireServer(A_1)
+        end
+    end
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.bossFolder[selectboss].HumanoidRootPart.CFrame + Vector3.new(0,3,0)
+end
+end)
+end
